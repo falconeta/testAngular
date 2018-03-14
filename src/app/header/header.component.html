@@ -1,0 +1,11 @@
+<div>
+  <p *ngIf="attivaDisattiva">{{nome}}</p>
+  <p>{{numero}}</p>
+  <p>{{attivaDisattiva}}</p>
+  <button (click)="modificaBoolean()">modifica boolean</button>
+  <ul>
+    <li *ngFor="let string of array"> {{string}}
+    </li>
+  </ul>
+</div>
+
