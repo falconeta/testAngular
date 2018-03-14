@@ -4,6 +4,6 @@
     <p>attualmente sono: {{attivaDisattiva}}</p>
     <button class="btn btn-primary center-block m-2" (click)="modificaBoolean()">toogle lista</button>
     <ul class="list-group " *ngIf="attivaDisattiva">
-      <button type="button" class="list-group-item list-group-item-action text-center" *ngFor="let string of array"> {{string}}</button>
+      <button type="button" class="list-group-item list-group-item-action" *ngFor="let string of array"> {{string}}</button>
     </ul>
 </header>
