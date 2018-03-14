@@ -12,6 +12,7 @@ import { Post } from '../models/post';
 export class PostComponent implements OnInit {
   user: User = new User();
   post: Post = new Post();
+  error: string;
   constructor(private servizioRichiesta: RequestService, private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -24,6 +25,7 @@ export class PostComponent implements OnInit {
   send() {
     this.servizioRichiesta.addPost(this.post).subscribe(
       event => console.log(event),
-      error => console.log(error)); // da finire
+      error => this.error = error.message,
+      () => alert('va'));
   }
 }
