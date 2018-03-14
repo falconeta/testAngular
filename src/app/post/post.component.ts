@@ -22,6 +22,8 @@ export class PostComponent implements OnInit {
     });
   }
   send() {
-    this.servizioRichiesta.addPost(this.post).subscribe(event => console.log(event));
+    this.servizioRichiesta.addPost(this.post).subscribe(
+      event => console.log(event),
+      error => console.log(error)); // da finire
   }
 }
