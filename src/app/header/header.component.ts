@@ -15,10 +15,7 @@ import { Album } from '../models/album';
 export class HeaderComponent implements OnInit {
   modello: Modello;
  @Output() exportModel = new EventEmitter<Modello>();
-  post: Post[];
   comments: Comment[];
-  commentUser: Comment[];
-  albumUser: Album[];
   array: string[];
   messages: string[];
   constructor(private servizioChiamata: RequestService, private messaggi: MessageService, private servizioModello: ReadWriteService) {
@@ -29,24 +26,24 @@ export class HeaderComponent implements OnInit {
     this.servizioModello.getModello().subscribe(modello => {
       this.modello = modello;
       this.servizioChiamata.getPostUser(this.modello.id).subscribe(posts => {
-        this.post = posts;
-        this.modello.numeroPost = this.post.length;
+        this.modello.post = posts;
+        this.modello.numeroPost = this.modello.post.length;
       });
       this.servizioChiamata.getComment().subscribe(comments => {
         this.comments = comments;
         this.calcoloCommentiPostUser();
       });
       this.servizioChiamata.getAlbumUser(this.modello.id).subscribe(album => {
-        this.albumUser = album;
-        this.modello.numeroAlbum = this.albumUser.length;
+        this.modello.album = album;
+        this.modello.numeroAlbum = this.modello.album.length;
       });
       this.exportModel.emit(this.modello); // emette output
     });
   }
   private calcoloCommentiPostUser() {
-    for (const post of this.post) {
-      this.commentUser = this.comments.filter(comment => comment.postId === post.id);
-      this.modello.numeroCommenti += this.commentUser.length;
+    for (const post of this.modello.post) {
+      this.modello.commenti = this.comments.filter(comment => comment.postId === post.id);
+      this.modello.numeroCommenti += this.modello.commenti.length;
     }
   }
 
