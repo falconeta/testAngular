@@ -3,4 +3,5 @@ export class Modello {
      nome: string;
      veroFalso: boolean;
      numeroPost: number;
+     numeroCommenti: number;
 }

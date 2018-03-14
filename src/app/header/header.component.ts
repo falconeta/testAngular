@@ -2,6 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReadWriteService } from '../services/read-write.service';
 import { Modello } from '../models/modello';
 import { MessageService } from '../services/message.service';
+import { RequestService } from '../services/request.service';
+import { Post } from '../models/post';
+import { Comment } from '../models/comment';
 
 @Component({
   selector: 'app-header',
@@ -11,15 +14,25 @@ import { MessageService } from '../services/message.service';
 export class HeaderComponent implements OnInit {
   modello: Modello;
  @Output() exportModel = new EventEmitter<Modello>();
+  post: Post[];
+  comments: Comment[];
   array: string[];
   messages: string[];
-  constructor(private messaggi: MessageService, private servizioModello: ReadWriteService) {
+  constructor(private servizioChiamata: RequestService, private messaggi: MessageService, private servizioModello: ReadWriteService) {
     this.array = ['pippo', 'pluto', 'topolino', 'cane', 'gatto']; }
   ngOnInit() {
     this.messaggi.addMessage(`sono nell'onInit di Header`);
     this.messages = this.messaggi.getMessage();
     this.servizioModello.getModello().subscribe(modello => {
       this.modello = modello;
+      this.servizioChiamata.getPostUser(this.modello.id).subscribe(posts => {
+        this.post = posts;
+        this.modello.numeroPost = this.post.length;
+      });
+      this.servizioChiamata.getCommentUser(this.modello.id).subscribe(comments => {
+        this.comments = comments;
+        this.modello.numeroCommenti = this.comments.length;
+      });
       this.exportModel.emit(this.modello); // emette output
     });
   }

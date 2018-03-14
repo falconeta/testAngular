@@ -10,12 +10,14 @@ export class ReadWriteService {
     this.modello.id = 1;
     this.modello.nome = 'Mario';
     this.modello.numeroPost = 0;
+    this.modello.numeroCommenti = 0;
     this.modello.veroFalso = false;
    }
-   setModello(id: number, nome: string, numero: number, valore: boolean): void {
+   setModello(id: number, nome: string, numeroPost: number, numeroCommenti: number, valore: boolean): void {
     this.modello.id = id;
     this.modello.nome = nome;
-    this.modello.numeroPost = numero;
+    this.modello.numeroPost = numeroPost;
+    this.modello.numeroCommenti = numeroCommenti;
     this.modello.veroFalso = valore;
    }
    getModello(): Observable<Modello> {
