@@ -12,7 +12,7 @@ export class RequestService {
     return this.http.get<Post[]>(this.url + 'posts/?userId=' + idUser);
   }
 
-  getCommentUser(idPost): Observable<Comment[] > {
-    return this.http.get<Comment[]>(this.url + 'comments?postId=' + idPost);
+  getComment(): Observable<Comment[] > {
+    return this.http.get<Comment[]>(this.url + 'comments');
   }
 }

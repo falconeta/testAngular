@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
  @Output() exportModel = new EventEmitter<Modello>();
   post: Post[];
   comments: Comment[];
+  commentUser: Comment[];
   array: string[];
   messages: string[];
   constructor(private servizioChiamata: RequestService, private messaggi: MessageService, private servizioModello: ReadWriteService) {
@@ -29,9 +30,12 @@ export class HeaderComponent implements OnInit {
         this.post = posts;
         this.modello.numeroPost = this.post.length;
       });
-      this.servizioChiamata.getCommentUser(this.modello.id).subscribe(comments => {
+      this.servizioChiamata.getComment().subscribe(comments => {
         this.comments = comments;
-        this.modello.numeroCommenti = this.comments.length;
+        for (const post of this.post) {// ciclo per estrarre il numero di commenti relativi ai post
+          this.commentUser = this.comments.filter(comment => comment.postId === post.id);
+          this.modello.numeroCommenti += this.commentUser.length;
+        }
       });
       this.exportModel.emit(this.modello); // emette output
     });
