@@ -1,11 +1,9 @@
-<div>
-  <p>{{nome}}</p>
-  <p>{{numero}}</p>
-  <p>{{attivaDisattiva}}</p>
-  <button (click)="modificaBoolean()">toogle lista</button>
-  <ul *ngIf="attivaDisattiva">
-    <li *ngFor="let string of array"> {{string}}
-    </li>
-  </ul>
-</div>
-
+<header class="jumbotron d-flex justify-content-center">
+    <h1 class="text-center">{{nome}}</h1>
+    <h3 >numero: <span class="badge badge-primary badge-pill">{{numero}}</span></h3>
+    <p>attualmente sono: {{attivaDisattiva}}</p>
+    <button class="btn btn-primary center-block m-2" (click)="modificaBoolean()">toogle lista</button>
+    <ul class="list-group " *ngIf="attivaDisattiva">
+      <button type="button" class="list-group-item list-group-item-action text-center" *ngFor="let string of array"> {{string}}</button>
+    </ul>
+</header>
