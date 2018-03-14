@@ -32,14 +32,18 @@ export class HeaderComponent implements OnInit {
       });
       this.servizioChiamata.getComment().subscribe(comments => {
         this.comments = comments;
-        for (const post of this.post) {// ciclo per estrarre il numero di commenti relativi ai post
-          this.commentUser = this.comments.filter(comment => comment.postId === post.id);
-          this.modello.numeroCommenti += this.commentUser.length;
-        }
+        this.calcoloCommentiPostUser();
       });
       this.exportModel.emit(this.modello); // emette output
     });
   }
+  private calcoloCommentiPostUser() {
+    for (const post of this.post) {
+      this.commentUser = this.comments.filter(comment => comment.postId === post.id);
+      this.modello.numeroCommenti += this.commentUser.length;
+    }
+  }
+
   modificaBoolean() {
     this.modello.veroFalso ? this.modello.veroFalso = false : this.modello.veroFalso = true;
   }
