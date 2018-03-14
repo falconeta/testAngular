@@ -1,7 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
   <app-header (exportModel)="esporta($event)"></app-header>
-  <app-body [model]="modelloArrivato"></app-body>
+  <!-- <app-body [model]="modelloArrivato"></app-body> -->
+  <router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
+

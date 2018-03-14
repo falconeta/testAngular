@@ -15,7 +15,7 @@ import { Foto } from '../models/foto';
 })
 export class HeaderComponent implements OnInit {
   modello: Modello;
- @Output() exportModel = new EventEmitter<Modello>();
+ @Output() exportModel = new EventEmitter<Modello>(); // funziona solo se hanno un componente che li possa mettere in comunicazione
   array: string[];
   messages: string[];
   constructor(private servizioChiamata: RequestService, private messaggi: MessageService, private servizioModello: ReadWriteService) {
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
       this.servizioChiamata.getFoto().subscribe(foto => {
         this.calcoloFotoAlbumUser(foto);
       });
-      this.exportModel.emit(this.modello); // emette output
+      // this.exportModel.emit(this.modello); // emette output deprecato
     });
   }
   private calcoloFotoAlbumUser(foto) {

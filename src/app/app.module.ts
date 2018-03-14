@@ -11,6 +11,8 @@ import { ReadWriteService } from './services/read-write.service';
 import { BodyComponent } from './body/body.component';
 import { MessageService } from './services/message.service';
 import { RequestService } from './services/request.service';
+import { PostComponent } from './post/post.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 
@@ -18,7 +20,9 @@ import { RequestService } from './services/request.service';
   declarations: [
     AppComponent,
     HeaderComponent,
-    BodyComponent
+    BodyComponent,
+    PostComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
