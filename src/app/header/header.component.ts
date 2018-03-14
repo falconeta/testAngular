@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit {
   modello: Modello;
  @Output() exportModel = new EventEmitter<Modello>();
   array: string[];
-  cursor;
   messages: string[];
   constructor(private messaggi: MessageService, private servizioModello: ReadWriteService) {
     this.array = ['pippo', 'pluto', 'topolino', 'cane', 'gatto']; }
@@ -22,9 +21,6 @@ export class HeaderComponent implements OnInit {
     this.servizioModello.getModello().subscribe(modello => {
       this.modello = modello;
       this.exportModel.emit(this.modello); // emette output
-      this.cursor = setInterval(() => {
-        this.modello.numero === 10 ? clearInterval(this.cursor) : this.modello.numero++;
-      }, 1000);
     });
   }
   modificaBoolean() {

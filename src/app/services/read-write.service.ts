@@ -7,13 +7,15 @@ import { of } from 'rxjs/observable/of';
 export class ReadWriteService {
    modello: Modello = new Modello();
   constructor() {
+    this.modello.id = 1;
     this.modello.nome = 'Mario';
-    this.modello.numero = 0;
+    this.modello.numeroPost = 0;
     this.modello.veroFalso = false;
    }
-   setModello(nome: string, numero: number, valore: boolean): void {
+   setModello(id: number, nome: string, numero: number, valore: boolean): void {
+    this.modello.id = id;
     this.modello.nome = nome;
-    this.modello.numero = numero;
+    this.modello.numeroPost = numero;
     this.modello.veroFalso = valore;
    }
    getModello(): Observable<Modello> {

@@ -1,5 +1,6 @@
 export class Modello {
+     id: number;
      nome: string;
      veroFalso: boolean;
-     numero: number;
+     numeroPost: number;
 }
