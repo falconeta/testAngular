@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ReadWriteService } from '../services/read-write.service';
 import { Modello } from '../models/modello';
 
@@ -8,19 +8,20 @@ import { Modello } from '../models/modello';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  // nome = 'Ciao!';
-  // numero = 0;
-  // attivaDisattiva = true;
   modello: Modello;
+ @Output() exportModel = new EventEmitter<Modello>();
   array: string[];
   cursor;
   constructor(private servizioModello: ReadWriteService) {
     this.array = ['pippo', 'pluto', 'topolino', 'cane', 'gatto']; }
   ngOnInit() {
-    this.servizioModello.getModello().subscribe(modello => this.modello = modello);
-    this.cursor = setInterval(() => {
-      this.modello.numero === 10 ? clearInterval(this.cursor) : this.modello.numero++;
-    }, 1000);
+    this.servizioModello.getModello().subscribe(modello => {
+      this.modello = modello;
+      this.exportModel.emit(this.modello); // emette output
+      this.cursor = setInterval(() => {
+        this.modello.numero === 10 ? clearInterval(this.cursor) : this.modello.numero++;
+      }, 1000);
+    });
   }
   modificaBoolean() {
     this.modello.veroFalso ? this.modello.veroFalso = false : this.modello.veroFalso = true;

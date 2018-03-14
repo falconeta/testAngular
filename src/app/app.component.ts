@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Modello } from './models/modello';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  modelloArrivato: Modello;
+  esporta(modello: Modello) {
+    this.modelloArrivato = modello;
+  }
 }
