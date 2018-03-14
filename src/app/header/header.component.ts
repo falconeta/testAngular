@@ -5,6 +5,7 @@ import { MessageService } from '../services/message.service';
 import { RequestService } from '../services/request.service';
 import { Post } from '../models/post';
 import { Comment } from '../models/comment';
+import { Album } from '../models/album';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
   post: Post[];
   comments: Comment[];
   commentUser: Comment[];
+  albumUser: Album[];
   array: string[];
   messages: string[];
   constructor(private servizioChiamata: RequestService, private messaggi: MessageService, private servizioModello: ReadWriteService) {
@@ -33,6 +35,10 @@ export class HeaderComponent implements OnInit {
       this.servizioChiamata.getComment().subscribe(comments => {
         this.comments = comments;
         this.calcoloCommentiPostUser();
+      });
+      this.servizioChiamata.getAlbumUser(this.modello.id).subscribe(album => {
+        this.albumUser = album;
+        this.modello.numeroAlbum = this.albumUser.length;
       });
       this.exportModel.emit(this.modello); // emette output
     });

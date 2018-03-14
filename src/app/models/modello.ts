@@ -4,4 +4,5 @@ export class Modello {
      veroFalso: boolean;
      numeroPost: number;
      numeroCommenti: number;
+     numeroAlbum: number;
 }

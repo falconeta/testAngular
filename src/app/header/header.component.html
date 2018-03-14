@@ -1,7 +1,8 @@
 <header class="jumbotron d-flex justify-content-center">
     <h1 class="text-center">{{modello.nome}}</h1>
-    <h3>Post: <span class="badge badge-primary badge-pill">{{modello.numeroPost}}</span></h3>
-    <h3>Post: <span class="badge badge-primary badge-pill">{{modello.numeroCommenti}}</span></h3>
+    <h3>Post: <span class="badge badge-primary badge-pill">{{modello.numeroPost}}</span> 
+      Commenti a Post: <span class="badge badge-primary badge-pill">{{modello.numeroCommenti}}</span> 
+      Album pubblicati: <span class="badge badge-primary badge-pill">{{modello.numeroAlbum}}</span> </h3>
     <p>attualmente sono: {{modello.veroFalso}}</p>
     <button class="btn btn-primary center-block m-2" (click)="modificaBoolean()">toogle lista</button>
     <ul class="list-group " *ngIf="modello.veroFalso">
