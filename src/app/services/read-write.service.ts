@@ -3,9 +3,9 @@ import { Modello } from '../models/modello';
 
 @Injectable()
 export class ReadWriteService {
-  private modello: Modello;
+   modello: Modello = new Modello();
   constructor() {
-    this.modello.nome = '';
+    this.modello.nome = 'Mario';
     this.modello.numero = 0;
     this.modello.veroFalso = false;
    }

@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { ReadWriteService } from './services/read-write.service';
 
 
 
@@ -21,7 +22,7 @@ import { HeaderComponent } from './header/header.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ReadWriteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

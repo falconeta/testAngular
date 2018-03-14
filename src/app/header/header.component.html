@@ -1,9 +1,9 @@
 <header class="jumbotron d-flex justify-content-center">
-    <h1 class="text-center">{{nome}}</h1>
-    <h3 >numero: <span class="badge badge-primary badge-pill">{{numero}}</span></h3>
-    <p>attualmente sono: {{attivaDisattiva}}</p>
+    <h1 class="text-center">{{modello.nome}}</h1>
+    <h3 >numero: <span class="badge badge-primary badge-pill">{{modello.numero}}</span></h3>
+    <p>attualmente sono: {{modello.veroFalso}}</p>
     <button class="btn btn-primary center-block m-2" (click)="modificaBoolean()">toogle lista</button>
-    <ul class="list-group " *ngIf="attivaDisattiva">
+    <ul class="list-group " *ngIf="modello.veroFalso">
       <button type="button" class="list-group-item list-group-item-action" *ngFor="let string of array"> {{string}}</button>
     </ul>
 </header>
