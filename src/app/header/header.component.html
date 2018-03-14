@@ -1,9 +1,9 @@
 <div>
-  <p *ngIf="attivaDisattiva">{{nome}}</p>
+  <p>{{nome}}</p>
   <p>{{numero}}</p>
   <p>{{attivaDisattiva}}</p>
-  <button (click)="modificaBoolean()">modifica boolean</button>
-  <ul>
+  <button (click)="modificaBoolean()">toogle lista</button>
+  <ul *ngIf="attivaDisattiva">
     <li *ngFor="let string of array"> {{string}}
     </li>
   </ul>
