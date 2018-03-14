@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Modello } from '../models/modello';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class ReadWriteService {
@@ -14,7 +16,7 @@ export class ReadWriteService {
     this.modello.numero = numero;
     this.modello.veroFalso = valore;
    }
-   getModello(): Modello {
-    return this.modello;
+   getModello(): Observable<Modello> {
+    return of(this.modello);
    }
 }

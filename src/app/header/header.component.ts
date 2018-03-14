@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(private servizioModello: ReadWriteService) {
     this.array = ['pippo', 'pluto', 'topolino', 'cane', 'gatto']; }
   ngOnInit() {
-    this.modello = this.servizioModello.getModello();
+    this.servizioModello.getModello().subscribe(modello => this.modello = modello);
     this.cursor = setInterval(() => {
       this.modello.numero === 10 ? clearInterval(this.cursor) : this.modello.numero++;
     }, 1000);
