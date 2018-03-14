@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { Modello } from '../models/modello';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-body',
@@ -8,10 +9,12 @@ import { Modello } from '../models/modello';
 })
 export class BodyComponent implements OnInit {
   @Input() model: Modello;
+  messages: string[];
   // @Output() text;
-  constructor() { }
+  constructor(private messaggi: MessageService) { }
 
   ngOnInit() {
+    this.messages = this.messaggi.getMessage();
     console.log(this.model);
   }
 
