@@ -3,9 +3,10 @@ import { ReadWriteService } from '../services/read-write.service';
 import { Modello } from '../models/modello';
 import { MessageService } from '../services/message.service';
 import { RequestService } from '../services/request.service';
-import { Post } from '../models/post';
+// import { Post } from '../models/post';
 import { Comment } from '../models/comment';
 import { Album } from '../models/album';
+import { Foto } from '../models/foto';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,6 @@ import { Album } from '../models/album';
 export class HeaderComponent implements OnInit {
   modello: Modello;
  @Output() exportModel = new EventEmitter<Modello>();
-  comments: Comment[];
   array: string[];
   messages: string[];
   constructor(private servizioChiamata: RequestService, private messaggi: MessageService, private servizioModello: ReadWriteService) {
@@ -30,19 +30,28 @@ export class HeaderComponent implements OnInit {
         this.modello.numeroPost = this.modello.post.length;
       });
       this.servizioChiamata.getComment().subscribe(comments => {
-        this.comments = comments;
-        this.calcoloCommentiPostUser();
+        this.calcoloCommentiPostUser(comments);
       });
       this.servizioChiamata.getAlbumUser(this.modello.id).subscribe(album => {
         this.modello.album = album;
         this.modello.numeroAlbum = this.modello.album.length;
       });
+      this.servizioChiamata.getFoto().subscribe(foto => {
+        this.calcoloFotoAlbumUser(foto);
+      });
       this.exportModel.emit(this.modello); // emette output
     });
   }
-  private calcoloCommentiPostUser() {
+  private calcoloFotoAlbumUser(foto) {
+    for (const album of this.modello.album) {
+      this.modello.foto = foto.filter(fotoSingola => fotoSingola.albumId === album.id);
+      this.modello.numeroFoto += this.modello.foto.length;
+    }
+  }
+
+  private calcoloCommentiPostUser(comments) {
     for (const post of this.modello.post) {
-      this.modello.commenti = this.comments.filter(comment => comment.postId === post.id);
+      this.modello.commenti = comments.filter(comment => comment.postId === post.id);
       this.modello.numeroCommenti += this.modello.commenti.length;
     }
   }

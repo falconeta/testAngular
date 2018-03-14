@@ -12,6 +12,7 @@ export class ReadWriteService {
     this.modello.numeroPost = 0;
     this.modello.numeroCommenti = 0;
     this.modello.numeroAlbum = 0;
+    this.modello.numeroFoto = 0;
     this.modello.veroFalso = false;
    }
    setModello(id: number, nome: string, numeroPost: number, numeroCommenti: number, numeroAlbum: number, valore: boolean): void {

@@ -4,6 +4,7 @@ import { Post } from '../models/post';
 import { Comment } from '../models/comment';
 import { Observable } from 'rxjs/Observable';
 import { Album } from '../models/album';
+import { Foto } from '../models/foto';
 
 @Injectable()
 export class RequestService {
@@ -18,5 +19,8 @@ export class RequestService {
   }
   getAlbumUser(idUser): Observable<Album[] > {
     return this.http.get<Album[]>(`${this.url}albums/?userId=${idUser}`);
+  }
+  getFoto(): Observable<Foto[] > {
+    return this.http.get<Foto[]>(`${this.url}photos`);
   }
 }
