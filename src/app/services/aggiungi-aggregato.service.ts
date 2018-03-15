@@ -5,8 +5,7 @@ import { Foto } from '../models/foto';
 import { Comment } from '../models/comment';
 @Injectable()
 export class AggiungiAggregatoService {
-  aggregati: Aggregato[];
-  aggregato: Aggregato;
+  aggregato: Aggregato = new Aggregato();
   foto: Foto[];
   commenti: Comment[];
   constructor(private request: RequestService) { }
@@ -17,7 +16,9 @@ export class AggiungiAggregatoService {
     this.addPhotosAlbum(id);
     this.addPostComment(id);
   }
-
+  getAggregato(): Aggregato {
+    return this.aggregato;
+  }
   private addPostComment(id: number) {
     this.request.getComment().subscribe(commenti => {
       this.commenti = commenti;

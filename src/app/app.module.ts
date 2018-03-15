@@ -13,6 +13,7 @@ import { MessageService } from './services/message.service';
 import { RequestService } from './services/request.service';
 import { PostComponent } from './post/post.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { AggiungiAggregatoService } from './services/aggiungi-aggregato.service';
 
 
 
@@ -30,7 +31,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ReadWriteService, MessageService, RequestService],
+  providers: [ReadWriteService, MessageService,
+    RequestService, AggiungiAggregatoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

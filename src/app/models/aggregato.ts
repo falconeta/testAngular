@@ -4,7 +4,7 @@ import { Post } from './post';
 
 export class Aggregato {
     id: number;
-    user: User;
+    user: User = new User();
     post: Post[];
     album: Album[];
 }
