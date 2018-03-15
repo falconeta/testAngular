@@ -17,9 +17,6 @@ export class GameComponent implements AfterViewInit {
   ctx: CanvasRenderingContext2D;
   disable = true;
   mario: Element;
-  x = this.width / 2;
-  y = this.height / 2;
-  image: HTMLImageElement = new Image();
   constructor(private elemento: ElementService) {
   }
 
@@ -29,33 +26,31 @@ export class GameComponent implements AfterViewInit {
     this.ngCanvas.width = this.width;
     this.ngCanvas.height = this.height;
     this.ctx = this.ngCanvas.getContext('2d');
-    this.image.src = './../../assets/mario.bmp';
   }
-
   createElement() {
-    this.ctx.drawImage(this.image, this.x, this.y);
-    alert(this.image.width);
+    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
     this.disable = false;
   }
   moveLeft() {
-    this.ctx.clearRect(this.x, this.y, this.image.width, this.image.height);
-    this.x !== 0 ? this.x -= 50 : this.x = 0;
-    this.ctx.drawImage(this.image, this.x, this.y);
+    this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
+    this.mario.x !== 0 ? this.elemento.decrementaX() : this.mario.x = 0;
+    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
   }
   moveRight() {
-    this.ctx.clearRect(this.x, this.y, this.image.width, this.image.height);
-    this.x !== this.width - this.image.width ? this.x += 50 : this.x = this.width - this.image.width;
-    this.ctx.drawImage(this.image, this.x, this.y);
+    this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
+    this.mario.x !== this.width - this.mario.image.width ? this.elemento.incrementaX() : this.mario.x = this.width - this.mario.image.width;
+    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
   }
   moveUp() {
-    this.ctx.clearRect(this.x, this.y, this.image.width, this.image.height);
-    this.y !== 0 ? this.y += - this.image.width : this.y = 0;
-    this.ctx.drawImage(this.image, this.x, this.y);
+    this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
+    this.mario.y !== 0 ? this.elemento.decrementaY() : this.mario.y = 0;
+    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
   }
   moveDown() {
-    this.ctx.clearRect(this.x, this.y, this.image.width, this.image.height);
-    this.y !== this.height - this.image.width ? this.y += 50 : this.y = this.height - this.image.width;
-    this.ctx.drawImage(this.image, this.x, this.y);
+    this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
+    this.mario.y !== this.height - this.mario.image.width ?
+    this.elemento.incrementaY() : this.mario.y = this.height - this.mario.image.width;
+    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
   }
 
 }
