@@ -15,6 +15,8 @@ import { PostComponent } from './post/post.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AggiungiAggregatoService } from './services/aggiungi-aggregato.service';
 import { ModalPostComponent } from './modal-post/modal-post.component';
+import { GeolocationComponent } from './geolocation/geolocation.component';
+import { GeolocationService } from './services/geolocation.service';
 
 
 
@@ -25,7 +27,8 @@ import { ModalPostComponent } from './modal-post/modal-post.component';
     BodyComponent,
     PostComponent,
     ErrorPageComponent,
-    ModalPostComponent
+    ModalPostComponent,
+    GeolocationComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { ModalPostComponent } from './modal-post/modal-post.component';
     FormsModule
   ],
   providers: [ReadWriteService, MessageService,
-    RequestService, AggiungiAggregatoService],
+    RequestService, AggiungiAggregatoService,
+    GeolocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
