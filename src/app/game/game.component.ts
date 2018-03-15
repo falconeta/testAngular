@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, Input, HostListener } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, AfterViewInit, Input, HostListener } from '@angular/core';
 import { ElementService } from '../services/element.service';
 import { Element } from '../models/element';
 
@@ -7,7 +7,7 @@ import { Element } from '../models/element';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements AfterViewInit {
+export class GameComponent implements OnInit {
   @ViewChild('canvas') public canvas: ElementRef;
   ngCanvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
@@ -16,47 +16,47 @@ export class GameComponent implements AfterViewInit {
   constructor(private elemento: ElementService) {
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.mario = this.elemento.elemento;
     this.ngCanvas = this.canvas.nativeElement;
     this.ctx = this.ngCanvas.getContext('2d');
+    // this.ctx.drawImage(this.mario.image, 30, 0, 20, 20, this.mario.x, this.mario.y, 20, 20);
   }
   createElement() {
-    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
+    this.ctx.drawImage(this.mario.image, 209, 0, 30, 30, this.mario.x, this.mario.y, 30, 30);
     this.disable = false;
   }
   moveLeft() {
     this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
     this.mario.x !== 0 ? this.elemento.decrementaX() : this.mario.x = 0;
-    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
+    this.ctx.drawImage(this.mario.image, 209, 0, 30, 30, this.mario.x, this.mario.y, 30, 30);
+    console.log(this.mario.x);
   }
   moveRight() {
     this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
-    this.mario.x !== this.ngCanvas.width - this.mario.image.width ?
-    this.elemento.incrementaX() : this.mario.x = this.ngCanvas.width - this.mario.image.width;
-    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
+    if (this.mario.x < this.ngCanvas.width - 30) {this.elemento.incrementaX(); }
+    this.ctx.drawImage(this.mario.image, 209, 0, 30, 30, this.mario.x, this.mario.y, 30, 30);
+    console.log(this.mario.x);
   }
   moveUp() {
     this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
     this.mario.y !== 0 ? this.elemento.decrementaY() : this.mario.y = 0;
-    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
+    this.ctx.drawImage(this.mario.image, 209, 0, 30, 30, this.mario.x, this.mario.y, 30, 30);
   }
   moveDown() {
     this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
-    this.mario.y !== this.ngCanvas.height - this.mario.image.width ?
-    this.elemento.incrementaY() : this.mario.y = this.ngCanvas.height - this.mario.image.width;
-    this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
+    if (this.mario.y < this.ngCanvas.height - 30) {this.elemento.incrementaY(); }
+    this.ctx.drawImage(this.mario.image, 209, 0, 30, 30, this.mario.x, this.mario.y, 30, 30);
+    console.log(this.mario.y);
   }
   spara() {
-    // this.ctx2.fillRect(this.mario.x + this.mario.image.width, this.mario.y + this.mario.image.height / 2, 10, 10);
-    let i = this.mario.x + this.mario.image.width;
-    const x = this.mario.x;
-    const y = this.mario.y;
+    let x = this.mario.x + 20;
+    const y = this.mario.y + 10;
     const cursor = setInterval(() => {
-      if (i < this.ngCanvas.width) {
-        this.ctx.clearRect(i, y, 10, 10);
-        i++;
-        this.ctx.fillRect(i, y, 10, 10);
+      if (x < this.ngCanvas.width) {
+        this.ctx.clearRect(x, y, 10, 10);
+        x++;
+        this.ctx.fillRect(x, y, 5, 3);
       } else {
         clearInterval(cursor);
       }
