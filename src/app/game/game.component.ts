@@ -11,7 +11,6 @@ export class GameComponent implements AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
   ngCanvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
-  ctx2: CanvasRenderingContext2D;
   disable = true;
   mario: Element;
   constructor(private elemento: ElementService) {
@@ -21,7 +20,6 @@ export class GameComponent implements AfterViewInit {
     this.mario = this.elemento.elemento;
     this.ngCanvas = this.canvas.nativeElement;
     this.ctx = this.ngCanvas.getContext('2d');
-    this.ctx2 = this.ngCanvas.getContext('2d');
   }
   createElement() {
     this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
@@ -52,11 +50,13 @@ export class GameComponent implements AfterViewInit {
   spara() {
     // this.ctx2.fillRect(this.mario.x + this.mario.image.width, this.mario.y + this.mario.image.height / 2, 10, 10);
     let i = this.mario.x + this.mario.image.width;
+    const x = this.mario.x;
+    const y = this.mario.y;
     const cursor = setInterval(() => {
       if (i < this.ngCanvas.width) {
-        this.ctx2.clearRect(i, this.mario.y, 10, 10);
+        this.ctx.clearRect(i, y, 10, 10);
         i++;
-        this.ctx2.fillRect(i, this.mario.y, 10, 10);
+        this.ctx.fillRect(i, y, 10, 10);
       } else {
         clearInterval(cursor);
       }
