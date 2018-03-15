@@ -14,6 +14,7 @@ import { RequestService } from './services/request.service';
 import { PostComponent } from './post/post.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AggiungiAggregatoService } from './services/aggiungi-aggregato.service';
+import { ModalPostComponent } from './modal-post/modal-post.component';
 
 
 
@@ -23,7 +24,8 @@ import { AggiungiAggregatoService } from './services/aggiungi-aggregato.service'
     HeaderComponent,
     BodyComponent,
     PostComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    ModalPostComponent
   ],
   imports: [
     BrowserModule,

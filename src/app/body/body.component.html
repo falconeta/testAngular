@@ -1,4 +1,10 @@
 <ul class="list-group">Messaggi
   <li class="list-group-item list-group-item-action" *ngFor="let message of messages">{{message}}</li>
 </ul>
-<button routerLink="/post/{{model.id}}"> scrivi post</button>
+<!-- <button routerLink="/post/{{model.id}}"> scrivi post</button> -->
+<button (click)="visualizzaPost()"> scrivi post</button>
+<app-modal-post modalId="MiaModale"
+    modalHeader="Invia Form"
+    (confirm)="faiQualcosa()">
+  <app-post [id]="model.id"></app-post>
+</app-modal-post>
