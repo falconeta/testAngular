@@ -6,6 +6,7 @@ import { AggiungiAggregatoService } from '../services/aggiungi-aggregato.service
 import { Aggregato } from '../models/aggregato';
 import { Post } from '../models/post';
 import { RequestService } from '../services/request.service';
+import { LocalStorageService } from '../services/local-storage.service';
 declare const $: any;
 @Component({
   selector: 'app-body',
@@ -19,7 +20,8 @@ export class BodyComponent implements OnInit {
   aggreggato: Aggregato = new Aggregato();
   constructor(private request: RequestService,
     private servizioAggregato: AggiungiAggregatoService,
-    private modello: ReadWriteService, private messaggi: MessageService) {
+    private modello: ReadWriteService, private messaggi: MessageService,
+    private servizioLocalStorage: LocalStorageService) {
      }
 
   ngOnInit() {
@@ -27,7 +29,6 @@ export class BodyComponent implements OnInit {
     this.modello.getModello().subscribe(modello => this.model = modello);
     this.servizioAggregato.addAggregato(this.model.id);
     this.aggreggato = this.servizioAggregato.getAggregato();
-    // console.log(this.aggreggato);
   }
   visualizzaPost() {
     // console.log('sono in visualizzaPost');
@@ -35,5 +36,9 @@ export class BodyComponent implements OnInit {
   }
   faiQualcosa() {
     alert('ciao');
+  }
+  addLocalStorage() {
+    this.servizioLocalStorage.setValueToLocalStorage(this.aggreggato.user.name, this.aggreggato);
+    console.log(this.servizioLocalStorage.getValueToLocalStorage(this.aggreggato.user.name));
   }
 }

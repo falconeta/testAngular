@@ -17,6 +17,7 @@ import { AggiungiAggregatoService } from './services/aggiungi-aggregato.service'
 import { ModalPostComponent } from './modal-post/modal-post.component';
 import { GeolocationComponent } from './geolocation/geolocation.component';
 import { GeolocationService } from './services/geolocation.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 
 
@@ -38,7 +39,7 @@ import { GeolocationService } from './services/geolocation.service';
   ],
   providers: [ReadWriteService, MessageService,
     RequestService, AggiungiAggregatoService,
-    GeolocationService],
+    GeolocationService, LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
