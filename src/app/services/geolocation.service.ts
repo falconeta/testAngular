@@ -17,7 +17,7 @@ export class GeolocationService {
     }
   }
   callbackPosition(position: Position) {
-    alert(position.coords.latitude);
+    alert(`latitudide ${position.coords.latitude} longitudine ${position.coords.longitude}`);
   }
   noGeolocation(error: PositionError) {
     alert(error.message);
