@@ -4,5 +4,5 @@ export class Post {
     id: number;
     title: string;
     body: string;
-    comment: Comment;
+    comment: Comment[];
 }

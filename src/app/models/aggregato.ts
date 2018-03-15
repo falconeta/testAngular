@@ -5,6 +5,6 @@ import { Post } from './post';
 export class Aggregato {
     id: number;
     user: User;
-    post: Post;
-    album: Album;
+    post: Post[];
+    album: Album[];
 }
