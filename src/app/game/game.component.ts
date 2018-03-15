@@ -78,7 +78,7 @@ export class GameComponent implements OnInit {
       case 's':
       this.moveDown();
       break;
-      case ' ':
+      case 'p':
       this.spara();
       break;
     }
