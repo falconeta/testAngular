@@ -19,6 +19,7 @@ import { GeolocationComponent } from './geolocation/geolocation.component';
 import { GeolocationService } from './services/geolocation.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { GameComponent } from './game/game.component';
+import { ElementService } from './services/element.service';
 
 
 
@@ -41,7 +42,8 @@ import { GameComponent } from './game/game.component';
   ],
   providers: [ReadWriteService, MessageService,
     RequestService, AggiungiAggregatoService,
-    GeolocationService, LocalStorageService],
+    GeolocationService, LocalStorageService,
+    ElementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
