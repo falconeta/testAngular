@@ -1,12 +1,14 @@
-<canvas #canvas>
+<div class="cont">
+  <canvas #canvas></canvas>
+  <div class="contButton" *ngIf="!disable">
+    <button #bLeft class="btn btn-primary" (click)="moveLeft()">SX</button>
+    <button #bRight class="btn btn-primary" (click)="moveRight()">DX</button>
+    <button #bUp class="btn btn-primary" (click)="moveUp()">UP</button>
+    <button #bDown class="btn btn-primary" (click)="moveDown()">DW</button>
+  </div>
+  <div class="navButton">
+    <button #bCreate class="btn btn-primary" *ngIf="disable" (click)="createElement()">Crea</button>
+    <button class="btn btn-primary" routerLink="">indietro</button>
+  </div>
 
-</canvas>
-
-<button #bCreate class="btn btn-primary" *ngIf="disable" (click)="createElement()">Crea</button>
-<div *ngIf="!disable">
-<button #bLeft class="btn btn-primary" (click)="moveLeft()">SX</button>
-<button #bRight class="btn btn-primary" (click)="moveRight()">DX</button>
-<button #bUp class="btn btn-primary" (click)="moveUp()">UP</button>
-<button #bDown class="btn btn-primary" (click)="moveDown()">DW</button>
 </div>
-<button class="btn btn-primary" routerLink="">indietro</button>

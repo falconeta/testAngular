@@ -4,15 +4,11 @@ import { Element } from '../models/element';
 
 @Component({
   selector: 'app-game',
-  // tslint:disable-next-line:max-line-length
-  // template: '<canvas #canvas></canvas> <button #button routerLink="">indietro</button> ',
   templateUrl: './game.component.html',
-  styles: ['canvas { border: 1px solid #000; }']
+  styleUrls: ['./game.component.css']
 })
 export class GameComponent implements AfterViewInit {
   @ViewChild('canvas') public canvas: ElementRef;
-  @Input() public width = 500;
-  @Input() public height = 500;
   ngCanvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   disable = true;
@@ -23,8 +19,6 @@ export class GameComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.mario = this.elemento.elemento;
     this.ngCanvas = this.canvas.nativeElement;
-    this.ngCanvas.width = this.width;
-    this.ngCanvas.height = this.height;
     this.ctx = this.ngCanvas.getContext('2d');
   }
   createElement() {
@@ -38,7 +32,8 @@ export class GameComponent implements AfterViewInit {
   }
   moveRight() {
     this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
-    this.mario.x !== this.width - this.mario.image.width ? this.elemento.incrementaX() : this.mario.x = this.width - this.mario.image.width;
+    this.mario.x !== this.ngCanvas.width - this.mario.image.width ?
+    this.elemento.incrementaX() : this.mario.x = this.ngCanvas.width - this.mario.image.width;
     this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
   }
   moveUp() {
@@ -48,9 +43,8 @@ export class GameComponent implements AfterViewInit {
   }
   moveDown() {
     this.ctx.clearRect(this.mario.x, this.mario.y, this.mario.image.width, this.mario.image.height);
-    this.mario.y !== this.height - this.mario.image.width ?
-    this.elemento.incrementaY() : this.mario.y = this.height - this.mario.image.width;
+    this.mario.y !== this.ngCanvas.height - this.mario.image.width ?
+    this.elemento.incrementaY() : this.mario.y = this.ngCanvas.height - this.mario.image.width;
     this.ctx.drawImage(this.mario.image, this.mario.x, this.mario.y);
   }
-
 }

@@ -2,9 +2,9 @@
   <li class="list-group-item list-group-item-action" *ngFor="let message of messages">{{message}}</li>
 </ul>
 <!-- <button routerLink="/post/{{model.id}}"> scrivi post</button> -->
-<button (click)="visualizzaPost()">scrivi post</button>
-<button (click)="addLocalStorage()">scrivi localStorage</button>
-<button routerLink="/play">gioca</button>
+<button class="btn btn-primary" (click)="visualizzaPost()">scrivi post</button>
+<button class="btn btn-primary" (click)="addLocalStorage()">scrivi localStorage</button>
+<button class="btn btn-primary" routerLink="/play">gioca</button>
 <app-modal-post modalId="MiaModale"
     modalHeader="Invia Form"
     (confirm)="faiQualcosa()">
