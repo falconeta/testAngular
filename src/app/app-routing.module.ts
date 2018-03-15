@@ -4,10 +4,12 @@ import { BodyComponent } from './body/body.component';
 import { PostComponent } from './post/post.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { Modello } from './models/modello';
+import { GameComponent } from './game/game.component';
 
 const routes: Routes = [
   {path: 'body', component: BodyComponent},
   {path: 'post/:id', component: PostComponent},
+  {path: 'play', component: GameComponent},
   {path: '', redirectTo: 'body', pathMatch: 'full'},
   {path: '**', component: ErrorPageComponent}
 ];

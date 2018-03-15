@@ -18,6 +18,7 @@ import { ModalPostComponent } from './modal-post/modal-post.component';
 import { GeolocationComponent } from './geolocation/geolocation.component';
 import { GeolocationService } from './services/geolocation.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { GameComponent } from './game/game.component';
 
 
 
@@ -29,7 +30,8 @@ import { LocalStorageService } from './services/local-storage.service';
     PostComponent,
     ErrorPageComponent,
     ModalPostComponent,
-    GeolocationComponent
+    GeolocationComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
